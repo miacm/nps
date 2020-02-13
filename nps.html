@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>Continental National Parks</title>
+</head>
+
+<body>
+    <center><font size="+2">Continental US National Park Boundaries</font></center>
+</body>
+
+</html>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-
+puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrD
+h+drA==" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-
+QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw
+5lwrg==" crossorigin=""></script>
+<script
+    src="data/natparks.geojson"></script>
+<div id="mapid"; style = "id-align:center"></div> 
+<style>
+    #mapid {
+        width: 1000px;
+        height: 600px;
+        margin: auto;
+    }
+</style>
+<script>
+    var map = L.map('mapid').setView([39.8283, -98.5795], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var parkIcon = L.icon({
+        iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/US-NationalParkService-Logo.svg',
+        // this points to a jpg image obtained from the internet
+        iconSize: [25, 25], // size of the icon
+        popupAnchor: [0, 0] // where the icon is located relative to the lat lon of the point.
+    });
+    var customPopup = "US National Park<br/><img src='https://upload.wikimedia.org/wikipedia/commons/1/1d/US-NationalParkService-Logo.svg' width='100px'/>";
+    L.geoJSON(parks, {
+        polygonToLayer: function (feature, latlng) {
+            return L.marker(latlng, { icon: treeIcon });
+        }
+    })
+        .bindPopup(customPopup)
+        .addTo(map);
+</script>

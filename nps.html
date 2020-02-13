@@ -39,7 +39,7 @@ QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Q
     var customPopup = "US National Park<br/><img src='https://upload.wikimedia.org/wikipedia/commons/1/1d/US-NationalParkService-Logo.svg' width='100px'/>";
     L.geoJSON(parks, {
         polygonToLayer: function (feature, latlng) {
-            return L.marker(latlng, { icon: treeIcon });
+            return L.marker(latlng, { icon: parkIcon });
         }
     })
         .bindPopup(customPopup)
